@@ -1,0 +1,35 @@
+name: 'Docker Build Action'
+description: 'Build a docker image and push to Quay.io'
+inputs:
+  dockerfile:
+    required: true
+    default: Dockerfile
+  dockerfile_location:
+    required: true
+    default: .
+  repository_url:
+    required: true
+  repository_name:
+    required: true
+  repository_user:
+    required: true
+  repository_password:
+    required: true
+  docker_tag:
+    required: true
+  docker_cache_tag:
+    required: true
+  docker_args:
+    required: false
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.dockerfile }}
+    - ${{ inputs.dockerfile_location }}
+    - ${{ inputs.quayio_repo }}
+    - ${{ inputs.quayio_user }}
+    - ${{ inputs.quayio_password }}
+    - ${{ inputs.docker_tag }}
+    - ${{ inputs.docker_cache_tag }}
+    - ${{ inputs.docker_args }}

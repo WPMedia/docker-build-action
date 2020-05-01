@@ -1,0 +1,30 @@
+name: 'Private Github Action'
+description: 'Download a private github action'
+inputs:
+  packages:
+    description: 'List of the Github packages delimited by whitespace'
+    required: true
+  token:
+    description: 'Personal Access Token with permission for Github Packages'
+    required: true
+  path:
+    description: 'Location to put the private actions'
+    required: true
+    default: .gh-private-actions
+  owner:
+    description: 'NPM owner'
+    required: true
+    default: wpmedia
+  repository:
+    description: 'NPM repository for actions'
+    required: true
+    default: npm.pkg.github.com
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.packages }}
+    - ${{ inputs.path }}
+    - ${{ inputs.token }}
+    - ${{ inputs.owner }}
+    - ${{ inputs.repository }}

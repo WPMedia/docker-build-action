@@ -1,0 +1,29 @@
+name: Publish
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  # unit tests
+  github-packages:
+    name: Publish Github Packages
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Get Git Metadata
+      uses: ./
+    - name: Package
+      env:
+        PACKAGE_VERSION: ${{steps.get-git-metadata.outputs.git_version}}
+      run: |
+        npm install
+        npm version ${PACKAGE_VERSION}
+        npm run package
+    - name: Publish
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        npm config set '//npm.pkg.github.com/:_authToken' '${GITHUB_TOKEN}'
+        npm publish --registry https://npm.pkg.github.com

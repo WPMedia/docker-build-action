@@ -23,10 +23,10 @@ This example uses the [github-private-action](https://github.com/WPMedia/github-
       - name: Checkout Git-Version
         uses: ./.github/actions/github-private-action
         with:
-          package: >-
+          package: |-
             @wpmedia/git-version-action@0.1.9
-            @wpmedia/docker-build@0.1.0
-          token: ${{ secrets.GITHUB_PACKAGE_TOKEN }}
+            @wpmedia/docker-build-action@0.1.1
+          token: ${{ secrets.PACKAGE_TOKEN }}
       - id: git_metadata
         name: Get Git Metadata
         uses: ./.gh-private-actions/@wpmedia/git-version-action

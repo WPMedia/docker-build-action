@@ -12,8 +12,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v1
-    - name: Get Git Metadata
-      uses: ./
+    - name: Checkout Git-Version
+      uses: ./.github/actions/github-private-action
+      with:
+        package: '@wpmedia/git-version-action@0.1.9'
+        token: ${{ secrets.PACKAGE_TOKEN }}
     - name: Package
       env:
         PACKAGE_VERSION: ${{steps.get-git-metadata.outputs.git_version}}

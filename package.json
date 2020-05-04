@@ -1,0 +1,19 @@
+{
+  "name": "docker-build-action",
+  "version": "0.1.3",
+  "description": "Builds the docker image and uploads it to a repository.",
+  "main": "entrypoint.sh",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WPMedia/docker-build-action.git"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/WPMedia/docker-build-action/issues"
+  },
+  "homepage": "https://github.com/WPMedia/docker-build-action#readme"
+}

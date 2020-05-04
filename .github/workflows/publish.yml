@@ -15,7 +15,7 @@ jobs:
     - name: Checkout Git-Version
       uses: ./.github/actions/github-private-action
       with:
-        package: '@wpmedia/git-version-action@0.1.9'
+        packages: '@wpmedia/git-version-action@0.1.9'
         token: ${{ secrets.PACKAGE_TOKEN }}
     - name: Package
       env:

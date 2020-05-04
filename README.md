@@ -23,9 +23,9 @@ This example uses the [github-private-action](https://github.com/WPMedia/github-
       - name: Checkout Git-Version
         uses: ./.github/actions/github-private-action
         with:
-          package: |-
+          packages: |-
             @wpmedia/git-version-action@0.1.9
-            @wpmedia/docker-build-action@0.1.1
+            @wpmedia/docker-build-action@0.1.2
           token: ${{ secrets.PACKAGE_TOKEN }}
       - id: git_metadata
         name: Get Git Metadata

@@ -4,11 +4,11 @@ inputs:
   context:
     required: true
     default: .
-  repository_url:
+  repository_server:
     required: true
   repository_name:
     required: true
-  repository_user:
+  repository_username:
     required: true
   repository_password:
     required: true
@@ -24,11 +24,12 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.context }}
     - ${{ inputs.dockerfile }}
-    - ${{ inputs.dockerfile_location }}
-    - ${{ inputs.quayio_repo }}
-    - ${{ inputs.quayio_user }}
-    - ${{ inputs.quayio_password }}
+    - ${{ inputs.repository_server }}
+    - ${{ inputs.repository_name }}
+    - ${{ inputs.repository_username }}
+    - ${{ inputs.repository_password }}
     - ${{ inputs.docker_tag }}
     - ${{ inputs.docker_cache_tag }}
     - ${{ inputs.docker_args }}

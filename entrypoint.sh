@@ -4,22 +4,22 @@
 #
 set -e
 
-dockerfile=$1
-context=$2
-repository_url=$3
-repository_name=$4
-repository_user=$5
-repository_password=$6
-docker_tag=$7
-docker_cache_tag=$8
+context=$1
+repository_server=$2
+repository_name=$3
+repository_username=$4
+repository_password=$5
+docker_tag=$6
+docker_cache_tag=$7
+dockerfile=$8
 docker_args=$9
 
 usage() {
-  echo "entrypoint.sh context repository_url repository_name repository_user repository_password docker_tag docker_cache_tag [dockerfile] [docker_args]"
+  echo "entrypoint.sh context repository_server repository_name repository_username repository_password docker_tag docker_cache_tag [dockerfile] [docker_args]"
   echo "  context"
-  echo "  repository_url"
+  echo "  repository_server"
   echo "  repository_name"
-  echo "  repository_user"
+  echo "  repository_username"
   echo "  repository_password"
   echo "  docker_tag"
   echo "  docker_cache_tag"
@@ -38,9 +38,9 @@ test_param() {
 }
 
 test_param "context" "${context}"
-test_param "repository_url" "${repository_url}"
+test_param "repository_server" "${repository_server}"
 test_param "repository_name" "${repository_name}"
-test_param "repository_user" "${repository_user}"
+test_param "repository_username" "${repository_username}"
 test_param "repository_password" "${repository_password}"
 test_param "docker_tag" "${docker_tag}"
 test_param "docker_cache_tag" "${docker_cache_tag}"
@@ -54,11 +54,11 @@ if test "${dockerfile}" -ne ""; then
   dockerfile_option="-f ${dockerfile}"
 fi
 
-echo "## Login to ${repository_url}"
-docker login -u="$repository_user" -p="$repository_password" ${repository_url}
+echo "## Login to ${repository_server}"
+docker login -u="$repository_username" -p="$repository_password" ${repository_server}
 
-docker_repo_tag=${repository_url}/${repository_name}:${docker_tag}
-docker_repo_cache_tag=${repository_url}/${repository_name}:${docker_cache_tag}
+docker_repo_tag=${repository_server}/${repository_name}:${docker_tag}
+docker_repo_cache_tag=${repository_server}/${repository_name}:${docker_cache_tag}
 
 echo "## Pull group image for cache"
 docker pull ${docker_repo_cache_tag} || true

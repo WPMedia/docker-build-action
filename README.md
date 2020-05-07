@@ -6,13 +6,15 @@ Builds the docker image and uploads it to a repository.
 
       - uses: ./.github/actions/docker-build
         with:
+          context:             # Directory context for building (default: .)
           repository_url:      # Any docker protocol repo like dockerhub.com or quay.io
           repository_name:     # project name in the repo
           repository_user:     # bot/user name for the repository
           repository_password: # bot / user password for the repository
           docker_tag:          # tag for the image
           docker_cache_tag:    # generic tag used for caching images (branch or similar, see example)
-          docker_args:         # additional options to pass to docker (see example)
+          dockerfile:          # OPTIONAL: Location of the dockerfile (default is ${context}/Dockerfile)
+          docker_args:         # OPTIONAL: additional options to pass to docker (see example)
 
 ## Example
 
@@ -25,7 +27,7 @@ This example uses the [github-private-action](https://github.com/WPMedia/github-
         with:
           packages: |-
             @wpmedia/git-version-action@0.1.9
-            @wpmedia/docker-build-action@0.1.4
+            @wpmedia/docker-build-action@0.2.0
           token: ${{ secrets.PACKAGE_TOKEN }}
       - id: git_metadata
         name: Get Git Metadata

@@ -1,10 +1,7 @@
 name: 'Docker Build Action'
 description: 'Build a docker image and push to Quay.io'
 inputs:
-  dockerfile:
-    required: true
-    default: Dockerfile
-  dockerfile_location:
+  context:
     required: true
     default: .
   repository_url:
@@ -20,6 +17,8 @@ inputs:
   docker_cache_tag:
     required: true
   docker_args:
+    required: false
+  dockerfile:
     required: false
 runs:
   using: 'docker'

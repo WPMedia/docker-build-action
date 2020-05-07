@@ -25,11 +25,11 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.context }}
-    - ${{ inputs.dockerfile }}
     - ${{ inputs.repository_server }}
     - ${{ inputs.repository_name }}
     - ${{ inputs.repository_username }}
     - ${{ inputs.repository_password }}
     - ${{ inputs.docker_tag }}
     - ${{ inputs.docker_cache_tag }}
+    - ${{ inputs.dockerfile }}
     - ${{ inputs.docker_args }}

@@ -50,7 +50,7 @@ test_param "docker_cache_tag" "${docker_cache_tag}"
 # ------------ #
 
 dockerfile_option=
-if test "${dockerfile}" -ne ""; then
+if test "${dockerfile}" != ""; then
   dockerfile_option="-f ${dockerfile}"
 fi
 

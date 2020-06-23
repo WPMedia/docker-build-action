@@ -20,22 +20,15 @@ Builds the docker image and uploads it to a repository.
 
 An example for a simple repository that only has one `Dockerfile` at the root of the repo. For more complicated setups you may need to add the `context` and `dockerfile`.
 
-This example uses the [github-private-action](https://github.com/WPMedia/github-private-action) to download the [git-version-action](https://github.com/WPMedia/git-version-action), which provides the version based on commit and the branch name. Neither is necessary for using this action, but is useful for illustrating how one might use `docker_tag` and `docker_cache_tag`.
+This example uses the [git-version-action](https://github.com/WPMedia/git-version-action), which provides the version based on commit and the branch name. Neither is necessary for using this action, but is useful for illustrating how one might use `docker_tag` and `docker_cache_tag`.
 
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Checkout Git-Version
-        uses: ./.github/actions/github-private-action
-        with:
-          packages: |-
-            @wpmedia/git-version-action@0.1.9
-            @wpmedia/docker-build-action@0.3.1
-          token: ${{ secrets.PACKAGE_TOKEN }}
       - id: git_metadata
         name: Get Git Metadata
-        uses: ./.gh-private-actions/@wpmedia/git-version-action
+        uses: WPMedia/git-version-action@v1
       - name: Docker Build
-        uses: ./.gh-private-actions/@wpmedia/docker-build-action
+        uses: WPMedia/docker-build-action@v1
         env:
           branch: ${{steps.git_metadata.outputs.git_branch}}
           version: ${{steps.git_metadata.outputs.git_version}}

@@ -77,5 +77,5 @@ docker push ${docker_repo_tag}
 docker push ${docker_repo_cache_tag}
 
 echo "## Set Environment Variables"
-echo "::set-env name=quayio_docker_tag::${docker_tag}"
-echo "::set-env name=quayio_docker_image::${docker_repo_tag}"
+echo "quayio_docker_tag=${docker_tag}" >> "${GITHUB_ENV}"
+echo "quayio_docker_image=${docker_repo_tag}" >> "${GITHUB_ENV}"
